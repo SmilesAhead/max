@@ -1,0 +1,16 @@
+{
+    "name": "modbus-iaq",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon index"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "modbus-serial": "^7.6.0",
+        "serialport": "^8.0.5"
+    }
+}
