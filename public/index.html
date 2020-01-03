@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>E&amp;E Solutions</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/bootstrap.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <script src="assets/3.4.1_jquery.min.js"></script>
+  </head>
+
+  <body class="bg-light">
+    <div
+      class="row text-light"
+      style="padding: 5px;background-color: #0072bc"
+      id="header"
+    >
+      <div class="col-sm-6">
+        <h1 style="font-size: 40pt; padding-left: 10px">
+          <b>
+            <span id="floor" style="width: 250px; padding-right: 20px; "></span>
+          </b>
+        </h1>
+      </div>
+      <div class="col-sm-6 text-right">
+        <h1 style="padding-right: 10px">
+          <b>
+            <span id="status" style="font-size: 35pt"></span>
+          </b>
+        </h1>
+      </div>
+    </div>
+
+    <div class="container-fluid text-center vertical-align-center">
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="card-nxt-nxt shadow card-nxt-data ">
+            <div class="card-nxt-header text-light">
+              <h1 class="data-heading " style="margin:0px">
+                <b><span id="para-name"></span></b>
+              </h1>
+            </div>
+            <div class="card-nxt-hue"></div>
+            <div
+              class="card-nxt-body card-nxt-data-body"
+              style="background-color:rgba(235, 76, 76, 1);"
+            >
+              <!-- <div
+                class="outdoor-value"
+                style=" text-align: right;
+            margin-right: 70px ; background-color: rgba(235, 76, 76);"
+              >
+                <h6>OUTDOOR</h6>
+                <p id="para-out">89</p>
+              </div> -->
+
+              <h1 style="" class="card-nxt-data-value" id="para-in">
+                <img
+                  width="auto"
+                  height="120px"
+                  src="assets/loader.gif"
+                  alt=""
+                />
+              </h1>
+
+              <span id="para-unit"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div
+            class="indoor-card-nxt"
+            style="background-color: rgb(111, 228, 183); border-radius: 5px; "
+          >
+            <div class="indoor-card-nxt-header">
+              <div class="row table" style="margin:0;">
+                <div class="col-4 cell">
+                  <h4>PARAMETERS</h4>
+                </div>
+                <div class="col-4 cell">
+                  <h4>INDOOR</h4>
+                </div>
+                <div class="col-4 cell">
+                  <h4>OUTDOOR</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="row table">
+              <div class="col-4 cell">
+                <h5>Temperature (℃)</h5>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <h5>Humidity (%)</h5>
+              </div>
+              <div class="col-4 cell">
+                <span id="hum"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="hum_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <h5>PM2.5 (ug/m<sup>3</sup>)</h5>
+              </div>
+              <div class="col-4 cell">
+                <span id="pm25"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="pm25_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <h5>PM10 (ug/m<sup>3</sup>)</h5>
+              </div>
+              <div class="col-4 cell">
+                <span id="pm10"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="pm10_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <h5>CO2 (PPM)</h5>
+              </div>
+              <div class="col-4 cell">
+                <span id="co2"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="co2_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <h5>VOC (PPB)</h5>
+              </div>
+              <div class="col-4 cell">
+                <span id="voc"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="voc_o"> 32.4 </span>
+              </div>
+            </div>
+            <!-- <div>Temperature:</div>
+            <div>Humidity: <span></span></div>
+            <div>PM2.5: <span></span></div>
+            <div>PM10: <span></span></div>
+            <div>CO2: <span></span></div>
+            <div>VOC: <span></span></div> -->
+          </div>
+          <hr />
+          <!-- <div class="outdoor-card-nxt" style="background-color: wheat;">
+            <div class="outdoor-card-nxt-header">
+              <h4>OUTDOOR</h4>
+            </div>
+
+            <div class="row table">
+              <div class="col-4 cell">
+                <h5>Temperature</h5>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+
+              <div class="col-4 cell">
+                <h5>Humidity</h5>
+              </div>
+              <div class="col-6 cell">
+                <span id="hum_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+              <div class="col-6 cell">
+                <h5>PM2.5</h5>
+              </div>
+              <div class="col-6 cell">
+                <span id="pm25_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+              <div class="col-6 cell">
+                <h5>PM10</h5>
+              </div>
+              <div class="col-6 cell">
+                <span id="pm10_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+              <div class="col-6 cell">
+                <h5>CO2</h5>
+              </div>
+              <div class="col-6 cell">
+                <span id="co2_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+              <div class="col-6 cell">
+                <h5>VOC</h5>
+              </div>
+              <div class="col-6 cell">
+                <span id="voc_o"> 32.4 </span>
+              </div>
+              <div class="col-4 cell">
+                <span id="temp_o"> 32.4 </span>
+              </div>
+            </div>
+            <div>Temperature: <span>23.12</span></div>
+            <div>Humidity: <span>23.12</span></div>
+            <div>CO2: <span>23.12</span></div>
+            <div>PM2.5: <span>23.12</span></div>
+            <div>PM10: <span>23.12</span></div>
+            <div>VOC: <span>23.12</span></div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div
+      id="footer"
+      class="footer fixed-bottom text-light text-center"
+      style="background-color: #0072bc"
+    >
+      <h3>
+        <b
+          >&copy; <span id="year"></span> E&amp;E Solutions | All Rights
+          Reserved</b
+        >
+      </h3>
+      <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+      </script>
+    </div>
+    <script>
+      var i = 0;
+      var dash = new Array(NaN, NaN, NaN, NaN, NaN, NaN);
+      var para = new Array(
+        "Temperature",
+        "Humidity",
+        "PM 2.5",
+        "PM 10",
+        "CO<sub>2</sub>",
+        "VOC"
+      );
+      var para_unit = new Array(
+        "<sup>o</sup>C",
+        "%",
+        "ug/m<sup>3</sup>",
+        "ug/m<sup>3</sup>",
+        "PPM",
+        "PPB"
+      );
+      setInterval(function() {
+        var url = "./read/1";
+        var floor = "MAX HEALTHCARE";
+        var color = "#0072bc";
+        $.ajax(url, {
+          dataType: "json",
+          timeout: 6000,
+          success: function(data) {
+            dash[0] = parseFloat(data[0] + "." + data[1]);
+            dash[1] = parseFloat(data[2] + "." + data[3]);
+            dash[2] = parseFloat(data[4]);
+            dash[3] = parseFloat(data[5]);
+            dash[4] = parseFloat(data[6]);
+            dash[5] = parseFloat(data[7]);
+            $("#temp").html(dash[0] + " " + para_unit[0]);
+            $("#hum").html(dash[1] + " " + para_unit[1]);
+            $("#pm25").html(dash[2] + " " + para_unit[2]);
+            $("#pm10").html(dash[3] + " " + para_unit[3]);
+            $("#co2").html(dash[4] + " " + para_unit[4]);
+            $("#voc").html(dash[5] + " " + para_unit[5]);
+            $("#status").html(
+              '<span class="badge badge-pill badge-success">Active</span>'
+            );
+            $("#floor").html(floor);
+            document.getElementById("header").style.backgroundColor = color;
+            document.getElementById("footer").style.backgroundColor = color;
+          },
+          error: function() {
+            $("#status").html(
+              '<span class="badge badge-pill badge-danger">Disconnected</span>'
+            );
+            $("#temp")
+              .html
+              //   '<img width="auto" height="120px" src="assets/loader.gif" alt="">'
+              ();
+            $("#floor").html(floor);
+            dash = NaN;
+            document.getElementById("header").style.backgroundColor = color;
+            document.getElementById("footer").style.backgroundColor = color;
+          }
+        });
+      }, 10000);
+      setInterval(function() {
+        document.getElementById("para-name").innerHTML = para[i];
+        document.getElementById("para-in").innerHTML = dash[i];
+        document.getElementById("para-unit").innerHTML = para_unit[i];
+        i++;
+        if (i > 5) i = 0;
+      }, 3000);
+    </script>
+  </body>
+</html>

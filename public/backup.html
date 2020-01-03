@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>E&amp;E Solutions</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="assets/3.4.1_jquery.min.js"></script>
+</head>
+
+<body class="bg-light">
+    <div class="row text-light" style="padding: 10px;background-color: #0072bc" id="header">
+        <div class="col-sm-6">
+            <h1 style="font-size: 40pt; padding-left: 10px">
+                <b>
+                    <span id="floor" style="width: 250px; padding-right: 20px;"></span>
+                </b>
+            </h1>
+        </div>
+        <div class="col-sm-6 text-right">
+            <h1 style="padding-right: 10px">
+                <b>
+                    <span id="status" style="font-size: 35pt"></span>
+                </b>
+            </h1>
+        </div>
+    </div>
+    <div class="container-fluid text-center vertical-align-center">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card shadow card-data">
+                    <div class="card-header bg-dark text-light">
+                        <h1 class="data-heading"><b>Temperature</b></h1>
+                    </div>
+                    <div class="card-body card-data-body" style="background-color:rgba(255,0,0,0.7); padding:40px 0px">
+                        <h1 style="font-size: 100pt;" id="temp"><img width="auto" height="120px" src="assets/loader.gif"
+                                alt=""></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card shadow card-data">
+                    <div class="card-header bg-dark text-light">
+                        <h1 class="data-heading"><b>Humidity</b></h1>
+                    </div>
+                    <div class="card-body card-data-body" style="background-color:cornflowerblue; padding:40px 0px">
+                        <h1 style="font-size: 100pt" id="hum"><img width="auto" height="120px" src="assets/loader.gif"
+                                alt=""></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card shadow card-data">
+                    <div class="card-header bg-dark text-light">
+                        <h1 class="data-heading"><b>CO<sub>2</sub></b></h1>
+                    </div>
+                    <div class="card-body card-data-body" style="background-color:#5fccdd; padding:40px 0px">
+                        <h1 style="font-size: 100pt" id="co2"><img width="auto" height="120px" src="assets/loader.gif"
+                                alt=""></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 25px;">
+            <div class="col-sm-4">
+                <div class="card shadow card-data">
+                    <div class="card-header bg-dark text-light">
+                        <h1 class="data-heading"><b>PM 2.5</b></h1>
+                    </div>
+                    <div class="card-body card-data-body" style="background-color:teal; padding:40px 0px">
+                        <h1 style="font-size: 100pt;" id="pm25"><img width="auto" height="120px" src="assets/loader.gif"
+                                alt=""></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card shadow card-data">
+                    <div class="card-header bg-dark text-light">
+                        <h1 class="data-heading"><b>PM 10</sup></b></h1>
+                    </div>
+                    <div class="card-body card-data-body" style="background-color:#61926c; padding:40px 0px">
+                        <h1 style="font-size: 100pt;" id="pm10"><img width="auto" height="120px" src="assets/loader.gif"
+                                alt=""></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card shadow card-data">
+                    <div class="card-header bg-dark text-light">
+                        <h1 class="data-heading"><b>VOC</b></h1>
+                    </div>
+                    <div class="card-body card-data-body" style="background-color: #d192e8; padding:40px 0px">
+                        <h1 style="font-size: 100pt;" id="voc"><img width="auto" height="120px" src="assets/loader.gif"
+                                alt=""></h1>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-3">
+                <div class="card shadow card-data">
+                    <div class="card-header bg-dark text-light">
+                        <h1 class="data-heading"><b>CO</b></h1>
+                    </div>
+                    <div class="card-body card-data-body" style="background-color:darkorange;">
+                        <h1 style="font-size: 60pt;" id="co"><img width="auto" height="180px" src="assets/loader.gif" alt=""></h1>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div id="footer" class="footer fixed-bottom text-light text-center" style="background-color: #0072bc">
+        <h3><b>&copy; <span id="year"></span> E&amp;E Solutions | All Rights Reserved</b></h3>
+        <script>
+            document.getElementById('year').innerHTML = new Date().getFullYear();
+        </script>
+    </div>
+    <script>
+        setInterval(function () {
+            var url = './read/1';
+            var floor = 'Max HealthCare';
+            var color = '#0072bc';
+            $.ajax(url, {
+                dataType: 'json',
+                timeout: 6000,
+                success: function (data) {
+                    $('#temp').html('<b>' + data[0] + '.' + data[1] +
+                        ' <span class="unit">&deg;C</span></b>')
+                    $('#hum').html('<b>' + data[2] + '.' + data[3] +
+                        ' <span class="unit">%</span></b>')
+                    $('#co2').html('<b>' + data[6] + ' <span class="unit">PPM</span></b>')
+                    $('#pm25').html('<b>' + data[4] +
+                        ' <span class="unit">&mu;g/m<sup>3</sup></span></b>')
+                    $('#pm10').html('<b>' + data[5] +
+                        ' <span class="unit">&mu;g/m<sup>3</sup></span></b>')
+                    $('#voc').html('<b>' + data[7] + ' <span class="unit">PPB</span></b>')
+                    $('#co').html('<b>' + data[8] + ' <br><span class="unit">PPB</span></b>')
+                    $('#status').html('<span class="badge badge-pill badge-success">Active</span>')
+                    $('#floor').html(floor);
+                    document.getElementById('header').style.backgroundColor = color;
+                    document.getElementById('footer').style.backgroundColor = color;
+                },
+                error: function () {
+                    $('#status').html(
+                        '<span class="badge badge-pill badge-danger">Disconnected</span>');
+                    $('#temp').html(
+                        '<img width="auto" height="120px" src="assets/loader.gif" alt="">')
+                    $('#hum').html(
+                        '<img width="auto" height="120px" src="assets/loader.gif" alt="">')
+                    $('#co2').html(
+                        '<img width="auto" height="120px" src="assets/loader.gif" alt="">')
+                    $('#pm25').html(
+                        '<img width="auto" height="180px" src="assets/loader.gif" alt="">')
+                    $('#pm10').html(
+                        '<img width="auto" height="180px" src="assets/loader.gif" alt="">')
+                    $('#voc').html(
+                        '<img width="auto" height="180px" src="assets/loader.gif" alt="">')
+                    $('#co').html(
+                        '<img width="auto" height="180px" src="assets/loader.gif" alt="">')
+                    $('#floor').html(floor);
+                    document.getElementById('header').style.backgroundColor = color;
+                    document.getElementById('footer').style.backgroundColor = color;
+                }
+            });
+        }, 10000);
+        setInterval(function () {
+            var cTime = new Date();
+            var optionsD = {
+                day: 'numeric',
+                year: 'numeric',
+                month: 'short'
+            };
+            var optionsT = {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric'
+            };
+            document.getElementById('c-time').innerHTML = cTime.toLocaleString('en-IN', optionsD) + ' | ' +
+                cTime.toLocaleString('en-US', optionsT);
+        }, 1000);
+    </script>
+</body>
+
+</html>
