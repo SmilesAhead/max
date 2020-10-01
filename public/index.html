@@ -14,12 +14,17 @@
       class="row text-light"
       style="padding: 5px;background-color: #0072bc"
       id="header">
-      <div class="col-sm-6">
+      <div class="col-sm-5">
         <h1 style="font-size: 40pt; padding-left: 10px">
           <b><span id="floor" style="width: 250px; padding-right: 20px; "></span></b>
         </h1>
       </div>
-      <div class="col-sm-6 text-right">
+      <div class="col-sm-4">
+        <h1 style="font-size: 35pt; padding-left: 10px; padding-top: 4px;">
+          <b><span id="time" style="width: 250px; padding-right: 20px;"></span></b>
+        </h1>
+      </div>
+      <div class="col-sm-3 text-right">
         <h1 style="padding-right: 10px">
           <b>
             <span id="status" style="font-size: 35pt"></span>
@@ -131,7 +136,22 @@
           </div>
         </div>
       </div>
+    
+      <div class="index__savedata">
+        <div class="row">
+          <form class="form-inline">
+            <label class="sr-only" for="inlineFormInputName2">From:</label>
+            <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="From Date">
+            <label class="sr-only" for="inlineFormInputName2">To:</label>
+            <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="To Date">
+
+            <button type="submit" class="btn btn-primary mb-2">Download Data</button>
+            <button type="submit" class="btn btn-primary mb-2 mx-2">View Data</button>
+          </form>
+        </div>
+      </div>
     </div>
+    
     <div id="footer"
       class="footer fixed-bottom text-light text-center"
       style="background-color: #0072bc" >
@@ -141,7 +161,7 @@
     <script>
       document.getElementById("year").innerHTML = new Date().getFullYear();
       var i = 0;
-      var dash = new Array(NaN, NaN, NaN, NaN, NaN, NaN);
+      var dash = new Array("99", "99", "99", "99", "99", "99");
       var para = new Array(
         "Temperature",
         "Humidity",
@@ -200,13 +220,23 @@
           }
         });
       }, 10000);
+
       setInterval(function() {
         document.getElementById("para-name").innerHTML = para[i];
         document.getElementById("para-in").innerHTML = dash[i];
         document.getElementById("para-unit").innerHTML = para_unit[i];
         i++;
         if (i > 5) i = 0;
+        var today = new Date();
+        document.getElementById("time").innerHTML = today.getHours() + ":" + today.getMinutes() + " " + today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear()
       }, 3000);
+
+      var logInterval = 15 * 60;        //Time in seconds
+      setInterval(() => {
+        fetch('http://localhost:3000/savedata?data=' + dash)
+          .then(response => response.json())
+          .then(data => console.log('nothing'))
+      }, 5000)
     </script>
 
   </body>

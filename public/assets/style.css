@@ -155,3 +155,7 @@ body {
 .disconnected {
   color: red;
 }
+
+.index__savedata {
+  margin: 0rem 1.6rem;
+}
